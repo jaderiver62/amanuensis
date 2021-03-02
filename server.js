@@ -1,8 +1,12 @@
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const { notes } = require('./Develop/db/db');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 function filterByQuery(query, notesArray) {
 
@@ -11,6 +15,10 @@ function filterByQuery(query, notesArray) {
     if (query.title) {
         filteredResults = filteredResults.filter(note => note.title === query.title);
     }
+    if (query.text) {
+        filteredResults = filteredResults.filter(note => note.text === query.text);
+    }
+
     return filteredResults;
 
 }
@@ -18,6 +26,13 @@ function filterByQuery(query, notesArray) {
 function findById(id, notesArray) {
     const result = notesArray.filter(note => note.id === id)[0];
     return result;
+}
+
+function createNewNote(body, notesArray) {
+    const note = body;
+    notesArray.push(note);
+
+    return note;
 }
 
 app.get('/api/notes', (req, res) => {
@@ -37,8 +52,9 @@ app.get('/api/notes/:id', (req, res) => {
     }
 });
 app.post('/api/notes', (req, res) => {
-    console.log(req.body);
-    res.json(req.body);
+    req.body.id = notes.length.toString();
+    const note = createNewAnimal(req.body, notes);
+    res.json(note);
 });
 
 
