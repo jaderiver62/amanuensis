@@ -30,7 +30,11 @@ app.get('/api/notes', (req, res) => {
 });
 app.get('/api/notes/:id', (req, res) => {
     const result = findById(req.params.id, notes);
-    res.json(result);
+    if (result) {
+        res.json(result);
+    } else {
+        res.send(404);
+    }
 });
 
 app.listen(PORT, () => {
