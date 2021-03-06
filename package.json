@@ -19,7 +19,8 @@
     },
     "homepage": "https://github.com/jaderiver62/amanuensis#readme",
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "path": "^0.12.7"
     },
     "devDependencies": {}
 }
