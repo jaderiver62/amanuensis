@@ -1,7 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const { notes } = require('./db/db');
+const { notes } = require('./db/db.json');
+
+const shortid = require('shortid');
+ 
+
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -39,13 +44,15 @@ function createNewNote(body, notesArray) {
 }
 
 function deleteNote(id, notesArray) {
-    removed = notesArray.splice(id, 1);
+    const newNotesArray = notesArray.filter(note => note.id !== id);
+    const removed = findById(id, notesArray);
+
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
-        JSON.stringify({ notes: notesArray }, null, 2)
+        JSON.stringify({ notes: newNotesArray }, null, 2)
     );
 
-    return removed;
+    return newNotesArray;
 }
 
 
@@ -66,12 +73,12 @@ app.get('/api/notes/:id', (req, res) => {
     }
 });
 app.post('/api/notes', (req, res) => {
-    req.body.id = notes.length.toString();
+    req.body.id = shortid.generate();
     const note = createNewNote(req.body, notes);
     res.json(note);
 });
 app.delete('/api/notes/:id', (req, res) => {
-    const note = deleteNote(req.body.id, notes);
+    const note = deleteNote(req.params.id, notes);
     res.json(note);
 })
 
