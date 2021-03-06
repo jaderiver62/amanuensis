@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const { notes } = require('./Develop/db/db');
+const { notes } = require('./db/db');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -32,19 +32,19 @@ function createNewNote(body, notesArray) {
     const note = body;
     notesArray.push(note);
     fs.writeFileSync(
-        path.join(__dirname, './Develop/db/db.json'),
+        path.join(__dirname, './db/db.json'),
         JSON.stringify({ notes: notesArray }, null, 2)
     );
     return note;
 }
 
-function deleteNote(id, notesArray){
+function deleteNote(id, notesArray) {
     removed = notesArray.splice(id, 1);
     fs.writeFileSync(
-        path.join(__dirname, './Develop/db/db.json'),
+        path.join(__dirname, './db/db.json'),
         JSON.stringify({ notes: notesArray }, null, 2)
     );
-    
+
     return removed;
 }
 
@@ -70,8 +70,8 @@ app.post('/api/notes', (req, res) => {
     const note = createNewNote(req.body, notes);
     res.json(note);
 });
-app.delete('/api/notes/:id', (req, res)=>{
-    const note = deleteNote(req.body.id,notes);
+app.delete('/api/notes/:id', (req, res) => {
+    const note = deleteNote(req.body.id, notes);
     res.json(note);
 })
 
