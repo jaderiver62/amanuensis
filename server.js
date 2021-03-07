@@ -72,15 +72,15 @@ app.get('/api/notes/:id', (req, res) => {
         res.send(404);
     }
 });
-app.post('/api/notes', (req, res) => {
-    req.body.id = shortid.generate();
-    const note = createNewNote(req.body, notes);
-    res.json(note);
-});
-app.delete('/api/notes/:id', (req, res) => {
-    const note = deleteNote(req.params.id, notes);
-    res.json(note);
-})
+//app.post('/api/notes', (req, res) => {
+//    req.body.id = shortid.generate();
+//    const note = createNewNote(req.body, notes);
+//    res.json(note);
+//});
+//app.delete('/api/notes/:id', (req, res) => {
+//    const note = deleteNote(req.params.id, notes);
+//    res.json(note);
+//})
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
