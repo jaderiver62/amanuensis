@@ -5,9 +5,13 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
+router.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/notes.html'));
+});
 
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
 
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
+});
 
 module.exports = router;
