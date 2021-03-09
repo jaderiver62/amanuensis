@@ -48,7 +48,7 @@ function createNewNote(body, notesArray) {
 function deleteNote(id, notesArray) {
 
     console.log("Removing.....");
-    console.long(findById(id, notesArray));
+    console.log(findById(id, notesArray));
     const newNotesArray = notesArray.filter(note => note.id !== id);
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
@@ -59,7 +59,7 @@ function deleteNote(id, notesArray) {
 }
 
 
-app.get('/api/notes', (req, res) => {
+app.get('/api/notes/', (req, res) => {
     let results = notes;
     if (req.query) {
         results = filterByQuery(req.query, results);
@@ -75,7 +75,7 @@ app.get('/api/notes/:id', (req, res) => {
         res.sendStatus(404);
     }
 });
-app.post('/api/notes', (req, res) => {
+app.post('/api/notes/', (req, res) => {
     req.body.id = shortid.generate();
     const note = createNewNote(req.body, notes);
     res.json(note);
@@ -85,15 +85,10 @@ app.delete('/api/notes/:id', (req, res) => {
     res.json(note);
 });
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
 
-app.get('/notes', (req, res) => {
+app.get('/notes/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 });
-
-
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });

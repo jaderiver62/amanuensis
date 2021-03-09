@@ -26,7 +26,7 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-    fetch('/api/notes', {
+    fetch('/api/notes/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ const getNotes = () =>
     });
 
 const saveNote = (note) =>
-    fetch('/api/notes', {
+    fetch('/api/notes/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -70,8 +70,8 @@ const handleNoteSave = () => {
         text: noteText.value,
     };
     saveNote(newNote).then(() => {
-        getAndRenderNotes();
         renderActiveNote();
+        getAndRenderNotes();
     });
 };
 
@@ -91,6 +91,8 @@ const handleNoteDelete = (e) => {
         getAndRenderNotes();
         renderActiveNote();
     });
+    location.reload();
+
 };
 
 // Sets the activeNote and displays it
