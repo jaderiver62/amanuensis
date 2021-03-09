@@ -11,11 +11,6 @@
       "id": "C3F6QDWGr"
     },
     {
-      "title": "Dave Lister",
-      "text": "Don't forget about Lister!",
-      "id": "k2pyfB6os"
-    },
-    {
       "title": "Arnold Rimmer",
       "text": "Don't forget about Rimsy!",
       "id": "Zvsy69kjD"
@@ -24,6 +19,11 @@
       "title": "Taffy Man",
       "text": "Don't forget about Taffy Man!",
       "id": "YebvMfZ6E"
+    },
+    {
+      "title": "Smeg Man",
+      "text": "Don't forget about Smeg Man!",
+      "id": "f3DFDhh_f"
     }
   ]
 }

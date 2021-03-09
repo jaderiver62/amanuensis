@@ -5,8 +5,6 @@ const { notes } = require('./db/db.json');
 const express = require('express');
 const shortid = require('shortid');
 
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -15,8 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
+
 
 function filterByQuery(query, notesArray) {
 
@@ -49,9 +46,10 @@ function createNewNote(body, notesArray) {
 }
 
 function deleteNote(id, notesArray) {
-    const newNotesArray = notesArray.filter(note => note.id !== id);
-    const removed = findById(id, notesArray);
 
+    console.log("Removing.....");
+    console.long(findById(id, notesArray));
+    const newNotesArray = notesArray.filter(note => note.id !== id);
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
         JSON.stringify({ notes: newNotesArray }, null, 2)
