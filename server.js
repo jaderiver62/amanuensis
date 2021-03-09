@@ -72,7 +72,7 @@ app.get('/api/notes/:id', (req, res) => {
     if (result) {
         res.json(result);
     } else {
-        res.send(404);
+        res.sendStatus(404);
     }
 });
 app.post('/api/notes', (req, res) => {
@@ -85,6 +85,18 @@ app.delete('/api/notes/:id', (req, res) => {
     res.json(note);
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
