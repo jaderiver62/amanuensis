@@ -1,9 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const { notes } = require('./db/db.json');
+
 
 const express = require('express');
-const shortid = require('shortid');
+
 
 
 const PORT = process.env.PORT || 3001;
@@ -12,6 +10,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+
 
 
 
@@ -84,6 +83,7 @@ app.delete('/api/notes/:id', (req, res) => {
     const note = deleteNote(req.params.id, notes);
     res.json(note);
 });
+
 
 
 app.get('/notes/', (req, res) => {
