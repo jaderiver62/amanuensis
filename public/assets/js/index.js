@@ -90,8 +90,8 @@ const handleNoteDelete = (e) => {
     deleteNote(noteId).then(() => {
         getAndRenderNotes();
         renderActiveNote();
-    });
 
+    });
 
 };
 
@@ -146,7 +146,6 @@ const renderNoteList = async(notes) => {
                 'delete-note'
             );
             delBtnEl.addEventListener('click', handleNoteDelete);
-
             liEl.append(delBtnEl);
         }
 
