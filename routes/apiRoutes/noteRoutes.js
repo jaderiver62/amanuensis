@@ -17,7 +17,7 @@ router.get('/notes/:id', (req, res) => {
     }
 });
 router.post('/notes', (req, res) => {
-    req.body.id = shortid.generate();
+    req.params.id = shortid.generate();
     const note = createNewNote(req.body, notes);
     res.json(note);
 });
