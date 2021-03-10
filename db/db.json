@@ -1,7 +1,5 @@
 {
-    "notes": [
-
-        {
+    "notes": [{
             "title": "Commando Cody",
             "text": "Don't forget about Sock Man!",
             "id": "665Vp_YOE"
@@ -45,6 +43,10 @@
             "title": "Jungle Goddess",
             "text": "Don't forget about Jungle Goddess!",
             "id": "lddmal9V7"
+        },
+        {
+            "title": "Fork Goddess",
+            "text": "Don't forget about Fork Goddess!"
         }
     ]
 }
